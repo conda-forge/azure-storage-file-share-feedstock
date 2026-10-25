@@ -21,13 +21,14 @@ requirements:
   host:
     - python ${{ python_min }}.*
     - pip
-    - setuptools
+    - setuptools >=77.0.3
+    - wheel
   run:
     - python >=${{ python_min }}
-    - azure-core >=1.30.0
-    - cryptography >=2.1.4
-    - typing_extensions >=4.6.0
     - isodate >=0.6.1
+    - azure-core >=1.38.3
+    - typing_extensions >=4.6.0
+    - cryptography >=2.1.4
 
 tests:
   - python:
@@ -35,7 +36,9 @@ tests:
         - azure.storage.fileshare
         - azure.storage.fileshare._generated
       pip_check: true
-      python_version: ${{ python_min }}
+      python_version:
+        - ${{ python_min }}
+        - "*"
 
 about:
   summary: Microsoft Azure Azure File Share Storage Client Library for Python
